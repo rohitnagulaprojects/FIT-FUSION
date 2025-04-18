@@ -1,0 +1,1081 @@
+/* Ensure the total width and height of elements include padding and border */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Hide horizontal overflow */
+html, body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-style:normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.overlay {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.initial-image {
+    position: relative;
+    margin: 0;
+    background-image: url("./intro.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%; /* Use viewport width to fit within the screen */
+    height: 900px;
+
+}
+
+.initial-image-1 {
+    position: relative;
+    margin: 0;
+    background-image: url("3d-gym-equipment_23-2151114163.avif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.609);
+}
+
+.top-header {
+    background-color: rgba(0, 0, 0, 0.666);
+    color: white;
+    border-top: 1px solid white;
+    font-size: 16px;
+    padding: 8px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    height: 30px;
+}
+
+.contact-info a {
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.contact-info a:hover {
+    transform: scale(1.2);
+}
+
+.separator {
+    margin: 0 10px;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+    padding-left: 10px;
+}
+
+.social-links a {
+    color: white;
+    font-size: 20px;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: red;
+    transform: scale(1.2);
+}
+
+.top-header:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+.bottom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 10px 20px;
+    position: fixed;
+    top: 4%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-top: 1px solid white;
+    height: 40px;
+}
+
+.gym-name h1 {
+    color: white;
+    font-size: 40px;
+    margin-top: 40px;
+    margin-left: 100px;
+    transition: transform 0.3s ease;
+}
+
+.gym-name h1:hover {
+    transform: scale(1.2);
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin-right: 120px;
+    padding: 0;
+    display: flex;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.navbar li {
+    margin: 0 10px;
+}
+
+.navbar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: transform 0.3s ease;
+}
+
+.navbar a:hover {
+    color: red;
+    transform: scale(1.2);
+}
+
+.gym-text {
+    text-align: left;
+    color: white;
+    margin-top: 300px;
+    margin-left: 250px;
+    animation: slideIn 1s ease-in-out;
+}
+
+.gym-text h2 {
+    font-size: 7cap;
+    margin-bottom: 20px;
+    margin-right: 550px;
+    font-style: unset;
+    margin-left: -90px;
+
+}
+
+.gym-text h3 {
+    font-size: 27px;
+    font-style: unset;
+    margin-left: -90px;
+}
+
+.gym-text-about {
+    text-align: left;
+    color: white;
+    margin-top: 250px;
+    margin-left: 100px;
+    animation: slideIn 1s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+}
+
+.gym-text-about h1 {
+    font-size: 6cap;
+    margin-bottom: 20px;
+    font-style: unset;
+}
+.about-area {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    position: relative; /* Ensure relative positioning for overlay */
+}
+
+.about-video-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+    overflow: hidden; 
+    max-width: 550px; 
+    max-height: 500px; 
+    border: 3px solid #fff; 
+    border-radius: 40px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    justify-content: flex-end; /* Align items to the right */
+    align-items: center; /* Center vertically if needed */ 
+    margin-top: 100px;
+    margin-right: 200px;
+}
+
+.about-video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit:unset; 
+    border-radius: 20px; 
+}
+
+.shift {
+    margin-left: 100px;
+    text-decoration-color: #fff;
+}
+
+
+.about-us h1{
+    text-align: center;
+    font-family:cursive;
+    font-size: 5cap;
+    color: white;
+    margin-bottom: 20px;
+}
+.about-us p {
+    color: #fff;           
+    text-align: center;   
+    font-size: 20px;       
+    font-style: italic;    
+    padding: 20px;         
+    border: 2px solid #ccc; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-radius: 10px;    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);    
+    margin: 10px auto;     
+    max-width: 1000px;     
+    line-height: 1.6;    
+   
+}
+
+.fitness-text {
+    color: red;
+    
+}
+
+.hollow-text {
+    font-weight: bold;
+    color: transparent; 
+    -webkit-text-stroke: 1px  rgb(214, 68, 68); 
+    font-size: 2.5cap; 
+
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    background-color: #000000;
+}
+
+
+.content {
+    text-align: center;
+    flex: 1;
+    background-color: #9a0a0a;
+    max-width: 900px;
+    padding: 20px 0; /* Add this line */
+    border-radius: 10px; /* Optional: adds rounded corners */
+}
+
+.about-container h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+   
+}
+
+.about-container h5 {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.why-join-us {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    
+}
+
+.img-description-1,
+.img-description-2,
+.img-description-3,
+.img-description-4 {
+    width: 300px;
+    margin: 20px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.img-description-1 img,
+.img-description-2 img,
+.img-description-3 img,
+.img-description-4 img {
+    max-width: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.img-description-1 h3,
+.img-description-2 h3,
+.img-description-3 h3,
+.img-description-4 h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.img-description-1 p,
+.img-description-2 p,
+.img-description-3 p,
+.img-description-4 p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+
+.gym-text h2:hover, .navbar {
+    transform: scale(1.1);
+}
+
+.gym-text h2, .gym-text h3, .navbar {
+    transition: transform 0.3s ease-in-out;
+}
+
+.gym-text h3:hover {
+    transform: scale(1.0);
+}
+
+.dumbel-imge {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-46%);
+    width: 40%;
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 70px;
+}
+
+.dumbel-imge img {
+    width: 1000px;
+    height: 700px;
+}
+
+.menu-icon {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 70px;
+    transform: translateY(-50%);
+    color: white;
+    cursor: pointer;
+}
+
+.menu-icon i {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.menu-icon i:hover {
+    color: red;
+    transform: scale(1.1);
+}
+
+.video-container {
+    position: relative;
+    height: 100vh;
+}
+
+#video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.over-lay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+.left-box, .right-box {
+    margin: 10px;
+}
+
+.white-box {
+    background-color: rgba(0, 0, 0, 0.735);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(172, 106, 106, 0.1);
+    text-align: center;
+    position: relative;
+    height: 700px;
+    font-style: unset;
+    transition: background-color 0.5s, color 0.5s, transform 0.5s;
+}
+
+.right-box img {
+    width: 450px;
+    height: 500px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.left-box img {
+    width: 590px;
+    height: 500px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.white-box button {
+    padding: 20px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-style: unset;
+    position: absolute;
+    bottom: 19px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: background-color 0.5s, color 0.5s, transform 0.5s;
+}
+
+.white-box button:hover {
+    background-color: white;
+    color: black;
+}
+
+.white-box:hover {
+    transition: transform 0.3s ease;
+}
+
+.white-box button {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.white-box button:hover {
+    background-color: black;
+    color: red;
+}
+
+.or-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    margin: 0 20px;
+}
+
+.or-icon span {
+    padding: 0 10px;
+}
+
+.or-icon:before,
+.or-icon:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 50%;
+    height: 1px;
+    background-color: white;
+}
+
+.or-icon:before {
+    right: 100%;
+    margin-right: 10px;
+}
+
+.or-icon:hover {
+    color: red;
+}
+
+.or-icon:after {
+    left: 100%;
+    margin-left: 10px;
+}
+
+.white-box h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: white;
+    font-style: initial;
+    font-weight: bold;
+}
+
+.middle-img {
+    position: relative;
+    margin: 0;
+    background-image: url("./3d-gym-equipment_23-2151114163.avif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    height: 100vh;
+}
+
+.over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.609);
+    opacity: 0;
+    transition: opacity 1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animate {
+    opacity: 1;
+}
+
+.bmi-container {
+    background-color: rgba(0, 0, 0, 0.583);
+    padding: 100px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(246, 244, 244, 0.263);
+    text-align: center;
+}
+
+.bmi-container h2 {
+    margin-bottom: 10px;
+    font-size: 50px;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: white;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.bmi-container button {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.bmi-container button:hover {
+    background-color: white;
+    color: black;
+}
+
+.bmi-result {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.666);
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.bmi-feedback.good {
+    color: green;
+}
+
+.bmi-feedback.medium {
+    color: orange;
+}
+
+.bmi-feedback.bad {
+    color: red;
+}
+
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #000000;
+    color: #fff;
+    padding: 20px;
+}
+
+.footer-partition {
+    flex: 1;
+    margin: 0 20px;
+}
+
+.footer-partition h1 {
+    margin-top: 0;
+    font-size: 40px;
+}
+.footer-partition h3 {
+    margin-top: 0;
+    font-size: 30px;
+}
+
+
+.footer-partition ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 20px;
+}
+
+.footer-partition ul li {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-style: oblique
+}
+
+.footer-partition ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-partition ul li a:hover {
+    text-decoration: underline;
+}
+.footer-partition p{
+    font-size: 20px;
+    font-style: oblique;
+}
+
+.social-media {
+    margin-top: 20px;
+}
+
+.social-media a {
+    color: #fff;
+    margin-right: 15px;
+    font-size: 20px;
+    text-decoration: none;
+    size: 30px;
+}
+
+.social-media a:hover {
+    color: red;
+}
+
+.contact a{
+    
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+
+}
+
+.contact a:hover{
+    color: red;
+}
+
+
+.expbtn{
+    padding: 30px 40px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-style: unset;
+    position: absolute;
+    margin-left: -5rem;
+}
+
+/* Enhance existing animations and add new ones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        transform: rotate(-10deg) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes gradientBg {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Apply animations to elements */
+.overlay {
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.gym-name h1 {
+    animation: slideInFromLeft 1s ease-out forwards;
+    transition: transform 0.3s ease;
+}
+
+.navbar ul {
+    animation: slideInFromRight 1s ease-out forwards;
+}
+
+.navbar a:hover {
+    color: red;
+    transform: scale(1.2);
+    animation: pulse 0.5s ease infinite;
+}
+
+.gym-text {
+    animation: slideInFromLeft 1.2s ease-out forwards;
+}
+
+.gym-text h2 {
+    animation: slideInFromBottom 1.4s ease-out forwards;
+}
+
+.gym-text h3 {
+    animation: slideInFromBottom 1.6s ease-out forwards;
+}
+
+.social-links a:hover {
+    color: red;
+    transform: scale(1.2);
+    animation: pulse 0.5s ease infinite;
+}
+
+.white-box {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.white-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.2);
+}
+
+.white-box button {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.white-box button:hover {
+    background-color: black;
+    color: red;
+    transform: scale(1.1);
+}
+
+.expbtn {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: pulse 2s infinite;
+}
+
+.expbtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+/* Add scroll-triggered animations */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-animate.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add these classes to your elements */
+.img-description-1, .img-description-2, .img-description-3, .img-description-4 {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.img-description-1.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+}
+
+.img-description-2.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+}
+
+.img-description-3.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+.img-description-4.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.7s;
+}
+
+.about-video-container {
+    transition: transform 0.5s ease;
+    animation: float 6s ease-in-out infinite;
+}
+
+.about-video-container:hover {
+    transform: scale(1.03);
+}
+
+.bmi-container {
+    animation: fadeIn 1.5s ease-out;
+    transition: transform 0.4s ease;
+}
+
+.bmi-container:hover {
+    transform: translateY(-5px);
+}
+
+.bmi-container button {
+    transition: all 0.3s ease;
+}
+
+.bmi-container button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.footer-partition h1, .footer-partition h3 {
+    animation: slideInFromLeft 1s ease-out forwards;
+}
+
+.footer-partition ul li {
+    opacity: 0;
+    animation: slideInFromRight 1s ease-out forwards;
+    animation-fill-mode: forwards;
+}
+
+.footer-partition ul li:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.footer-partition ul li:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.footer-partition ul li:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.footer-partition ul li:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.social-media a {
+    opacity: 0;
+    animation: rotateIn 0.6s ease-out forwards;
+    animation-fill-mode: forwards;
+    display: inline-block;
+}
+
+.social-media a:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.social-media a:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.social-media a:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.social-media a:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Add subtle background animation for certain sections */
+.about-container {
+    background: linear-gradient(45deg, #000000, #1a0303, #000000);
+    background-size: 200% 200%;
+    animation: gradientBg 15s ease infinite;
+}
+
+/* Parallax scrolling effect */
+.initial-image, .initial-image-1, .middle-img {
+    background-attachment: fixed;
+    transition: background-position 0.3s ease;
+}
+
+/* Add animation to the BMI result */
+.bmi-result {
+    animation: slideInFromBottom 0.8s ease-out forwards;
+}
+
+/* Make the text hollow effect more dynamic */
+.hollow-text {
+    animation: pulse 4s ease-in-out infinite;
+}
+
+/* Add JS to detect scroll and animate elements */

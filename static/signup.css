@@ -1,0 +1,30 @@
+.fa-envelope:before{
+    content: "\f0e0";
+    margin-left: -30px;
+}
+
+.fa-user:before {
+    content: "\f007";
+    margin-left: -30px;
+
+}
+
+.fa-phone:before {
+    content: "\f095";
+    margin-left: -30px;
+}
+
+.fa-user-tag:before {
+    content: "\f507";
+    margin-left: -30px;
+}
+.fa-lock:before {
+    content: "\f023";
+    margin-left: -30px;
+
+}
+
+.fa-check-circle:before, .fa-circle-check:before {
+    content: "\f058";
+    margin-left: 300px;
+}

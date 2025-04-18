@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym-Website</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanalei+Outline&display=swap">
+    <link rel="stylesheet" href="/static/login.css">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/profile.css">
+
+    <style>
+        body {
+            background: url('/static/gym-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Hanalei Outline', cursive;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent body from scrolling */
+        }
+
+        .login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+
+        .login-page .container-wrapper {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .login-container,
+        .image-container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+        }
+
+        .login-container {
+            text-align: center;
+            width: 100%;
+            margin-left: 13rem;
+        }
+
+        .image-container {
+            position: relative;
+            width: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 13rem;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            z-index: 0;
+            mix-blend-mode: multiply;
+        }
+
+        .login-container h2 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 5px;
+            border: none;
+            background: #555;
+            color: #fff;
+        }
+
+        .input-group input:focus {
+            border-color: #007bff;
+            outline: none;
+            background: #444;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 5px;
+            border: none;
+            background: #e50914;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background: #b20710;
+            transform: scale(1.05);
+        }
+
+        .login-info {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .login-info p {
+            margin: 0;
+            color: #ddd;
+        }
+
+        .login-info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-info a:hover {
+            text-decoration: underline;
+        }
+
+        .alert-danger {
+            margin-top: 1.5rem;
+            text-align: center;
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            padding: 1rem;
+        }
+
+        .success-message {
+            display: none;
+            color: #28a745;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .tickmark {
+            display: none;
+            width: 30px;
+            height: 30px;
+            margin: 0 auto;
+            background-color: #28a745;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .tickmark::before {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            width: 5px;
+            height: 15px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        .dropdown-menu {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        /* Custom styles for weeks and days */
+        .week-section {
+            margin-bottom: 20px;
+        }
+
+        .week-button, .day-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #c10000;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .week-button:hover, .day-button:hover {
+            background-color: #ccc;
+            color: #c10000;
+        }
+
+        .days-container {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .tasks-container {
+            margin-left: 40px;
+            margin-top: 10px;
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        .profile-container {
+            position: fixed; /* Ensure the profile container is fixed */
+            top: 40%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust for true center */
+            max-height: 80vh; /* Set a max height */
+            overflow-y: auto; /* Enable vertical scrolling */
+            width: 100%; /* Full width for the container */
+            box-sizing: border-box; /* Include padding and border in width/height */
+        }
+
+        .weeks-scrollable-container {
+            max-height: 80vh; /* Adjust based on your needs */
+            overflow-y: auto; /* Enable vertical scrolling within this container */
+            padding: 1rem;
+        }
+
+        .weeks-container {
+            position: relative;
+        }
+
+        .week-section {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .days-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .day-button {
+            margin-bottom: 0.5rem;
+        }
+        .container1 {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+        }
+        .left-section, .right-section {
+            flex: 1;
+            text-align: center;
+        }
+        .gif {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+        .instructions {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .right-section {
+            position: relative;
+            background-color: black; /* Keeps the black box */
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .timer {
+            font-size: 24px;
+            font-weight: bold;
+            color: yellow;
+            margin-bottom: 20px;
+        }
+        .camera-feed {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            border: 3px solid white;
+            margin-bottom: 20px; /* Add space between camera and status */
+        }
+        .rep-completed .camera-feed {
+            display: none;
+        }
+
+        /* New styles for rep count and form feedback display */
+        .exercise-status {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .rep-count {
+            font-size: 32px;
+            font-weight: bold;
+            color: #e50914;
+            margin-bottom: 10px;
+        }
+        
+        .form-feedback {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .correct-form {
+            color: #28a745;
+        }
+        
+        .incorrect-form {
+            color: #ffc107;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="initial-image">
+        <div class="overlay">
+            <header class="top-header">
+                <div class="contact-info">
+                    <a href="mailto:myfitnessclub@gmail.com"><span>&#9993; myfitnessclub@gmail.com</span></a><span
+                        class="separator">|</span>
+                    <a href="tel:9324111061"><span>&#9742; 9324111061</span></a><span class="separator">|</span>
+                    <a href="https://maps.app.goo.gl/bb9jL72s6iyvPz4v9" target="_blank"><span>&#127968; Dadar, Mumbai -
+                            400025</span></a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/MyFitnessCentre.Dadar/" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/myfitnesscentredadar/" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </header>
+
+            <header class="bottom-header">
+                <div class="gym-name">
+                    <h1>MY <span class="fitness-text">FITNESS</span> CLUB</h1>
+                </div>
+                <nav class="navbar">
+                    <ul><br/>
+                        <li><a href="{{ url_for('profile') }}">Profile</a></li>   
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    
+                        <li><a href="{{ url_for('workout') }}">Workouts</a></li>
+                    </ul>
+                    <div class="menu-icon" onclick="toggleMenu()">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="container1">
+                <div class="left-section">
+                    <img src="{{ url_for('static', filename='shoulderpress.gif') }}" class="gif" alt="Exercise GIF">
+                    <div class="instructions">
+                        <p>1. Stand or position yourself properly, ensuring your body is fully visible to the camera.</p>
+                        <p>2. Hold the dumbbells at shoulder level with a firm grip.</p>
+                        <p>3. Press the dumbbells upward until your arms are fully extended.</p>
+                        <p>4. Lower them back to shoulder level in a controlled motion.</p>
+                        <p>5. Repeat for 15 reps while maintaining proper posture.</p>
+                        <p>6. Keep the camera at an appropriate angle for accurate tracking.</p>
+                    </div>
+                </div>
+                <div class="right-section">
+                    <div class="timer" id="timer">Starting in 40 Seconds...</div>
+                    <!-- Camera feed displays rep count and form feedback directly on the video -->
+                    <img src="{{ url_for('video_feed_shoulder_press') }}" class="camera-feed" id="camera">
+                    
+                    <!-- Separate display that will synchronize with the on-video display -->
+                    <div class="exercise-status">
+                        <div class="rep-count" id="repCounter">Reps: 0/15</div>
+                        <div class="form-feedback" id="formFeedback">Get ready...</div>
+                    </div>
+                </div>
+            </div>
+        
+            <script>
+                class ExerciseVoiceAssistant {
+                    constructor() {
+                        this.synth = window.speechSynthesis;
+                        this.instructions = [
+                            "Welcome to your shoulder press exercise session.",
+                            "Stand or position yourself properly, ensuring your body is fully visible to the camera.",
+                            "Hold the dumbbells at shoulder level with a firm grip.",
+                            "When we begin, press the dumbbells upward until your arms are fully extended.",
+                            "Lower them back to shoulder level in a controlled motion.",
+                            "You will need to complete 15 repetitions while maintaining proper posture.",
+                            "Keep the camera at an appropriate angle for accurate tracking.",
+                            "The exercise will begin in 10 seconds.",
+                            "Get ready.",
+                            "Starting now."
+                        ];
+                        this.currentIndex = 0;
+                        this.intervalTime = 4000; // 4 seconds between instructions
+                    }
+
+                    speak(text) {
+                        const utterance = new SpeechSynthesisUtterance(text);
+                        utterance.rate = 0.9;
+                        utterance.pitch = 1.2;
+                        utterance.volume = 1;
+
+                        this.synth.speak(utterance);
+                    }
+
+                    start() {
+                        if (this.synth.speaking) {
+                            this.synth.cancel(); // Stop any ongoing speech
+                        }
+
+                        this.speak(this.instructions[0]);
+                        this.currentIndex = 1;
+
+                        const instructionInterval = setInterval(() => {
+                            if (this.currentIndex < this.instructions.length) {
+                                this.speak(this.instructions[this.currentIndex]);
+                                this.currentIndex++;
+                            } else {
+                                clearInterval(instructionInterval);
+                            }
+                        }, this.intervalTime);
+
+                        setTimeout(() => {
+                            this.synth.cancel();
+                            clearInterval(instructionInterval);
+                        }, 40000);
+                    }
+
+                    announceRep(repNumber) {
+                        // Cancel any ongoing speech
+                        if (this.synth.speaking) {
+                            this.synth.cancel();
+                        }
+                        
+                        this.speak(`Rep ${repNumber} complete.`);
+                    }
+
+                    announceCompletion() {
+                        if (this.synth.speaking) {
+                            this.synth.cancel();
+                        }
+                        
+                        this.speak("Excellent! All repetitions completed. Exercise set finished.");
+                    }
+                }
+
+                // Create a single instance of the voice assistant
+                let voiceAssistant;
+
+                function startVoiceGuide() {
+                    voiceAssistant = new ExerciseVoiceAssistant();
+                    voiceAssistant.start();
+                }
+
+                // Start the voice guide automatically when the page loads
+                window.onload = () => {
+                    setTimeout(startVoiceGuide, 1000); // Slight delay to avoid immediate block by browser
+                    // Start polling for exercise data right away, even during countdown
+                    startPollingExerciseData();
+                };
+
+                let timerElement = document.getElementById('timer');
+                let seconds = 40;
+                let countdown = setInterval(() => {
+                    seconds--;
+                    timerElement.innerText = `Starting in ${seconds}...`;
+                    
+                    // Update the form feedback during countdown
+                    if (seconds > 0) {
+                        document.getElementById('formFeedback').innerText = "Get ready...";
+                    }
+                    
+                    if (seconds === 0) {
+                        clearInterval(countdown);
+                        timerElement.innerText = "Exercise Started!";
+                        document.getElementById('formFeedback').innerText = "Begin your exercise";
+                    }
+                }, 1000);
+                
+                // Function to continuously poll exercise data from the backend
+                function startPollingExerciseData() {
+                    const repCounter = document.getElementById('repCounter');
+                    const formFeedback = document.getElementById('formFeedback');
+                    let lastRepCount = 0; // Track last rep count to detect changes
+                    
+                    // Set up polling at a frequent interval
+                    const pollInterval = setInterval(() => {
+                        fetch('/get_exercise_data')
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log("Received exercise data:", data); // Debug log
+                                
+                                // Update the rep counter with the count from the backend
+                                if (data.count !== undefined) {
+                                    repCounter.innerText = `Reps: ${data.count}/15`;
+                                    
+                                    // Check if rep count has increased
+                                    if (data.count > lastRepCount) {
+                                        // Announce completion of the rep
+                                        if (voiceAssistant) {
+                                            voiceAssistant.announceRep(data.count);
+                                        }
+                                        
+                                        // Update last rep count
+                                        lastRepCount = data.count;
+                                    }
+                                }
+                                
+                                // Update form feedback based on data from the backend
+                                if (data.feedback_message) {
+                                    formFeedback.innerText = data.feedback_message;
+                                    
+                                    if (data.is_correct_form) {
+                                        formFeedback.className = "form-feedback correct-form";
+                                    } else {
+                                        formFeedback.className = "form-feedback incorrect-form";
+                                    }
+                                }
+                                
+                                // Check if exercise is complete
+                                if (data.count >= 15) {
+                                    clearInterval(pollInterval);
+                                    document.getElementById('timer').innerText = "Workout Complete!";
+                                    formFeedback.innerText = "Exercise Complete!";
+                                    formFeedback.className = "form-feedback correct-form";
+                                    
+                                    // Announce workout completion
+                                    if (voiceAssistant) {
+                                        setTimeout(() => {
+                                            voiceAssistant.announceCompletion();
+                                        }, 1000); // Small delay to ensure the rep announcement completes
+                                    }
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Error fetching exercise data:", error);
+                            });
+                    }, 200); // Poll more frequently for more responsive updates
+                }
+            </script>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-partition">
+            <h1>MY <span class="fitness-text">FITNESS</span> CLUB </h1>
+            <p>Mr Sanket Bharam</p>
+            <p>Our gym offers state-of-the-art equipment and personalized training programs to help you achieve your fitness goals.</p>
+            <div class="contact">
+                <a href="mailto:myfitnessclub@gmail.com"><span>&#9993; myfitnessclub@gmail.com</span></a><span class="separator">|</span>
+                <a href="tel:9324111061"><span>&#9742; 9324111061</span></a><span class="separator">|</span>
+                <a href="https://maps.app.goo.gl/bb9jL72s6iyvPz4v9" target="_blank"><span>&#127968; Dadar, Mumbai - 400025</span></a>
+            </div>
+        </div>
+        
+        <div class="footer-partition">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Signup</a></li>
+            </ul>
+            <div class="social-media">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-partition">
+            <h3>Location</h3>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.9059376718273!2d72.834654!3d19.0152739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cec3021ec8a9%3A0x4fc9eb34c8ca7cc!2sMy%20Fitness%20Club%20Dadar!5e0!3m2!1sen!2sin!4v1601853102843!5m2!1sen!2sin"
+                width="700"
+                height="350"
+                style="border:0;"
+                allowfullscreen=""
+                aria-hidden="false"
+                tabindex="0">
+            </iframe>
+        </div>
+    </footer>
+</body>
+
+</html>

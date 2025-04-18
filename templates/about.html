@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym-Website</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanalei+Outline&display=swap">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="initial-image-1">
+        <div class="overlay">
+            <header class="top-header">
+                <div class="contact-info">
+                    <a href="mailto:myfitnessclub@gmail.com"><span>&#9993; myfitnessclub@gmail.com</span></a><span class="separator">|</span>
+                    <a href="tel:9324111061"><span>&#9742; 9324111061</span></a><span class="separator">|</span>
+                    <a href="https://maps.app.goo.gl/bb9jL72s6iyvPz4v9" target="_blank"><span>&#127968; Dadar, Mumbai - 400025</span></a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/MyFitnessCentre.Dadar/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/myfitnesscentredadar/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </header>
+            <header class="bottom-header">
+                <div class="gym-name">
+                    <h1>MY <span class="fitness-text">FITNESS</span> CLUB</h1>
+                </div>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>   
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        <li><a href="{{ url_for('signup') }}">Signup</a></li>
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                    </ul>
+                    <div class="menu-icon" onclick="toggleMenu()">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </nav>
+            </header>
+            <div class="about-area">
+                <div class="gym-text-about">
+                    <h1> <span class="hollow-text">SHAPE </span>YOUR</h1>
+                    <h1 class="shift">IDEAL BODY</h1>
+                </div>
+                <div class="about-video-container">
+                    <video autoplay muted loop>
+                        <source src="static/4367572-hd_1920_1080_30fps.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-container">
+        <video autoplay muted loop id="video-background">
+            <source src="static/gym video.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <div class="over-lay"></div>
+        <div class="container">
+            <div class="left-box">
+                <div class="about-us">
+                    <h1> <span class="fitness-text">About Us</span></h1>
+                    <p> At Gym and Fitness, we believe that fitness and wellbeing are the cornerstones of a full and vibrant life. Established in 2002, we began our journey as a family-owned business dedicated to providing exceptional gym equipment at affordable prices. But, we dreamed bigger than just being an ordinary fitness equipment supplier; we aspired to lead the industry.
+        
+                       <br><br>
+                        Two decades later, we are proud to have transformed Gym and Fitness into one of Australia's premier online retailers of fitness equipment. We've moved beyond just supplying gear – we've become advocates for fitness, wellbeing and life enrichment. Our commitment to excellence is reflected not only in the quality equipment we provide but also in the lives we've improved.
+                        <br><br>
+        
+                        Our real success lies in the thousands of customers we've empowered to live longer, more joyful, and healthier lives. We're more than just a fitness company – we're your partners in health, your cheerleaders on the sideline, motivating you to reach your personal fitness goals. Embrace the fitness journey with us and see how it transforms your world.
+                        <br><br>
+                        <span class="fitness-text">Join us in our mission to improve lives through fitness and wellness, because at Gym and Fitness, your health is our passion.</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-container">
+        <div class="content">
+            <h3>WHY JOIN MY FITNESS CLUB?</h3>
+            <h5>Membership Benefits</h5>
+            <div class="why-join-us">
+                <div class="img-description-1">
+                    <img src="static/facilties.png" alt="Facilities Image">
+                    <h3>Facilities</h3>
+                    <p>FREE Wifi, Access 200+ Gyms, Showers, Parking, Water Bubbler, Easy Access, Vending Machine</p>
+                </div>
+                <div class="img-description-2">
+                    <img src="static/cardio.png" alt="Cardio Equipment Image">
+                    <h3>Cardio Equipment</h3>
+                    <p>Exercise Bikes, Ellipticals, Rowers, Stairclimbers, Jacobs Ladder, SkiErg, Spin Bikes, Airdyne Bike</p>
+                </div>
+                <div class="img-description-3">
+                    <img src="static/strength.png" alt="Strength Equipment Image">
+                    <h3>Strength Equipment</h3>
+                    <p>Plate Loaded, Pin Loaded, Barbells, Dumbbells, Lifting Platforms</p>
+                </div>
+                <div class="img-description-4">
+                    <img src="static/functional.png" alt="Functional Training Image">
+                    <h3>Functional Training</h3>
+                    <p>Kettle Bells, Functional Training Rack, Battle Ropes, TRX, Medicine Balls, Slam Balls, Bosu Balls, Boxing Bags, Sled Track</p>
+                </div>
+                <div class="img-description-1">
+                    <img src="static/group.png" alt="Group Classes Image">
+                    <h3>Group Classes</h3>
+                    <p>Plus Fitness Classes, Classes On Demand, Master Classes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-partition">
+            <h1>MY <span class="fitness-text">FITNESS</span> CLUB </h1>
+            <p>Mr Sanket Bharam</p>
+            <p>Our gym offers state-of-the-art equipment and personalized training programs to help you achieve your fitness goals.</p>
+            <div class="contact">
+                <a href="mailto:myfitnessclub@gmail.com"><span>&#9993; myfitnessclub@gmail.com</span></a><span class="separator">|</span>
+                <a href="tel:9324111061"><span>&#9742; 9324111061</span></a><span class="separator">|</span>
+                <a href="https://maps.app.goo.gl/bb9jL72s6iyvPz4v9" target="_blank"><span>&#127968; Dadar, Mumbai - 400025</span></a>
+            </div>
+        </div>
+        
+        <div class="footer-partition">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Signup</a></li>
+            </ul>
+            <div class="social-media">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-partition">
+            <h3>Location</h3>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.9059376718273!2d72.834654!3d19.0152739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cec3021ec8a9%3A0x4fc9eb34c8ca7cc!2sMy%20Fitness%20Club%20Dadar!5e0!3m2!1sen!2sin!4v1601853102843!5m2!1sen!2sin"
+                width="700"
+                height="350"
+                style="border:0;"
+                allowfullscreen=""
+                aria-hidden="false"
+                tabindex="0">
+            </iframe>
+        </div>
+    </footer>
+
+    <!-- JavaScript for animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to check if element is in viewport
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.bottom >= 0
+                );
+            }
+
+            // Get all elements to animate
+            const elementsToAnimate = document.querySelectorAll('.img-description-1, .img-description-2, .img-description-3, .img-description-4');
+            
+            // Function to check and apply animations
+            function checkScroll() {
+                elementsToAnimate.forEach(element => {
+                    if (isInViewport(element)) {
+                        element.classList.add('animate');
+                    }
+                });
+            }
+            
+            // Check on load
+            checkScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkScroll);
+
+            // Toggle menu function
+            window.toggleMenu = function() {
+                document.querySelector('.navbar ul').classList.toggle('show');
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym-Website</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanalei+Outline&display=swap">
+    <link rel="stylesheet" href="/static/login.css">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/profile.css">
+
+    <style>
+        body {
+    background: url('/static/gym-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Hanalei Outline', cursive;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent body from scrolling */
+}
+
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    position: relative;
+}
+
+.login-page .container-wrapper {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.login-container,
+.image-container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+}
+
+.login-container {
+    text-align: center;
+    width: 100%;
+    margin-left: 13rem;
+}
+
+.image-container {
+    position: relative;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 13rem;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    z-index: 0;
+    mix-blend-mode: multiply;
+}
+
+.login-container h2 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: none;
+    background: #555;
+    color: #fff;
+}
+
+.input-group input:focus {
+    border-color: #007bff;
+    outline: none;
+    background: #444;
+}
+
+button {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: none;
+    background: #e50914;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background: #b20710;
+    transform: scale(1.05);
+}
+
+.login-info {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.login-info p {
+    margin: 0;
+    color: #ddd;
+}
+
+.login-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-info a:hover {
+    text-decoration: underline;
+}
+
+.alert-danger {
+    margin-top: 1.5rem;
+    text-align: center;
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.success-message {
+    display: none;
+    color: #28a745;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.tickmark {
+    display: none;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    background-color: #28a745;
+    border-radius: 50%;
+    position: relative;
+}
+
+.tickmark::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    width: 5px;
+    height: 15px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Custom styles for weeks and days */
+.week-section {
+    margin-bottom: 20px;
+}
+
+.week-button, .day-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #c10000;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    text-align: left;
+}
+
+.week-button:hover, .day-button:hover {
+    background-color: #ccc;
+    color: #c10000;
+}
+
+.days-container {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.tasks-container {
+    margin-left: 40px;
+    margin-top: 10px;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+.profile-container {
+    position: absolute; /* Ensure the profile container is fixed */
+    top: 51%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for true center */
+    max-height: 65vh; /* Set a max height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    width: 100%; /* Full width for the container */
+    box-sizing: border-box; /* Include padding and border in width/height */
+}
+
+.weeks-scrollable-container {
+    max-height: 80vh; /* Adjust based on your needs */
+    overflow-y: auto; /* Enable vertical scrolling within this container */
+    padding: 1rem;
+}
+
+.weeks-container {
+    position: relative;
+}
+
+.week-section {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.days-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.day-button {
+    margin-bottom: 0.5rem;
+}
+/* Progress Bar Container */
+.progress-bar-container {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 140px;
+}
+
+/* Progress Wrapper */
+.progress-wrapper {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+/* Transparent Background with White Overlay */
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.2); /* Transparent white overlay */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+    backdrop-filter: blur(5px); /* Smooth overlay effect */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle border */
+}
+
+/* Progress Fill with Smooth Animation */
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, rgba(255, 152, 0, 0.9), rgba(255, 87, 34, 0.9));
+    transition: width 0.8s ease-in-out, background 0.5s ease-in-out;
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Glow Effect */
+.progress-fill.animated {
+    animation: glowEffect 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes glowEffect {
+    0% {
+        box-shadow: 0px 0px 10px rgba(248, 70, 70, 0.5);
+    }
+    100% {
+        box-shadow: 0px 0px 20px rgb(255, 34, 34);
+    }
+}
+
+/* Progress Text */
+.progress-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: white;
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1; /* Always visible */
+}
+
+/* Reward Icon (🏆) */
+.reward-icon {
+    font-size: 24px;
+    cursor: pointer;
+    animation: bounce 1s infinite;
+    margin-left: 10px; /* Ensures it stays to the right */
+    margin-top: 20px;
+    visibility: visible; /* Ensure it's always visible */
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Coupon Pop-up */
+.coupon-popup {
+    position: fixed;
+    right: -300px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffd700;
+    padding: 20px;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: right 0.5s ease-in-out;
+    visibility: hidden;
+}
+
+/* Show Pop-up */
+.show-popup {
+    right: 20px;
+    visibility: visible;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Coupon Code */
+.coupon-code {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    background: #c10000;
+    padding: 10px;
+    display: inline-block;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Reset Icon */
+.reset-icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out;
+    margin-top: 20px;
+    visibility: hidden;
+}
+
+.reset-icon:hover {
+    transform: rotate(180deg);
+}
+.completion-animation {
+    display: inline-block;
+    margin-top:90px
+    margin-left: 40px;
+    background-color:rgb(235, 0, 0);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in-out;
+    transition: opacity 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="initial-image">
+        <div class="overlay">
+            <header class="top-header">
+                <div class="contact-info">
+                    <a href="mailto:myfitnessclub@gmail.com"><span>&#9993; myfitnessclub@gmail.com</span></a><span
+                        class="separator">|</span>
+                    <a href="tel:9324111061"><span>&#9742; 9324111061</span></a><span class="separator">|</span>
+                    <a href="https://maps.app.goo.gl/bb9jL72s6iyvPz4v9" target="_blank"><span>&#127968; Dadar, Mumbai -
+                            400025</span></a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/MyFitnessCentre.Dadar/" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/myfitnesscentredadar/" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </header>
+
+            <header class="bottom-header">
+                <div class="gym-name">
+                    <h1>MY <span class="fitness-text">FITNESS</span> CLUB</h1>
+                </div>
+                <nav class="navbar">
+                    <ul><br/>
+                        <li><a href="{{ url_for('profile') }}">Profile</a></li>   
+                    </ul>
+                    <div class="menu-icon" onclick="toggleMenu()">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </nav>
+            </header>
+            <div class="progress-bar-container">
+                <!-- Reset Icon -->
+                <span id="reset-icon" class="reset-icon" onclick="openResetPopup()">🔄</span>
+            
+                <div class="progress-wrapper">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <p class="progress-text">
+                        Completion: <span id="progress-percentage">0%</span>
+                    </p>
+                </div>
+            
+                <!-- Reward Icon -->
+                <span id="reward-icon" class="reward-icon" onclick="handleRewardClick()">🏆</span>
+            </div>
+            
+            <!-- Reward Pop-up (Encouragement) -->
+            <div id="reward-popup" class="coupon-popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closeRewardPopup()">✖</span>
+                    <h2>🎯 Keep Going!</h2>
+                    <p>Complete 100% of your tasks to unlock a special reward.</p>
+                </div>
+            </div>
+            
+            <!-- Reward Pop-up (Congratulations) -->
+            <div id="coupon-popup" class="coupon-popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closeCoupon()">✖</span>
+                    <h2>🎉 Congratulations! 🎉</h2>
+                    <p>You have completed 100% of your tasks! Enjoy a special reward from <strong>MyFitness Club</strong>.</p>
+                    <div class="coupon-code">GYM500OFF</div>
+                    <p>Use this code for discounts on gym-related products from FlipKart.</p>
+                </div>
+            </div>
+            
+            <!-- Reset Confirmation Pop-up -->
+            <div id="reset-popup" class="coupon-popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closeResetPopup()">✖</span>
+                    <h2>⚠ Reset Progress?</h2>
+                    <p>Are you sure you want to reset your progress? This action cannot be undone.</p>
+                    <button onclick="resetProgress()">Yes, Reset</button>
+                    <button onclick="closeResetPopup()">Cancel</button>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+        
+            <div class="profile-container">
+                <h1>Todo Plan - Total weeks to goal: {{ weeks_to_goal }}</h1><br/>
+                <div class="weeks-scrollable-container">
+                    <div class="weeks-container">
+                        {% for week in range(1, weeks_to_goal + 1) %}
+                        <div class="week-section">
+                            <button class="week-button" onclick="toggleWeek({{ week }})">
+                                Week {{ week }}
+                            </button>
+                            <div id="week{{ week }}Days" class="days-container" style="display:none;">
+                                {% for day in range(1, 8) %}
+                                <div class="day-section">
+                                    <button class="day-button" onclick="toggleDay({{ week }}, {{ day }})">
+                                        Day {{ day }}
+                                    </button>
+                                    <div id="week{{ week }}Day{{ day }}Tasks" class="tasks-container" style="display:none;">
+                                        {% if day == 7 %}
+                                            <label><input type="checkbox" class="task-checkbox" data-week="{{ week }}" data-day="{{ day }}" data-task="Breakfast"> Breakfast</label><br/>
+                                            <label><input type="checkbox" class="task-checkbox" data-week="{{ week }}" data-day="{{ day }}" data-task="Lunch"> Lunch</label><br/>
+                                            <label><input type="checkbox" class="task-checkbox" data-week="{{ week }}" data-day="{{ day }}" data-task="Dinner"> Dinner</label><br/>
+                                        {% else %}
+                                            <label><input type="checkbox" class="task-checkbox" data-week="{{ week }}" data-day="{{ day }}" data-task="Morning Exercise"> Morning Exercise</label><br/>
+                                            <label><input type="checkbox" class="task-checkbox" data-week="{{ week }}" data-day="{{ day }}" data-task="Breakfast"> Breakfast</label><br/>
+                                            <label><input type="checkbox" class="task-checkbox" data-week="{{ week }}" data-day="{{ day }}" data-task="Lunch"> Lunch</label><br/>
+                                            <label><input type="checkbox" class="task-checkbox" data-week="{{ week }}" data-day="{{ day }}" data-task="Dinner"> Dinner</label><br/>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+            <script>
+                
+                document.addEventListener("DOMContentLoaded", function () {
+                    const checkboxes = document.querySelectorAll(".task-checkbox");
+                
+                    checkboxes.forEach((checkbox) => {
+                        checkbox.addEventListener("change", function () {
+                            checkDayCompletion(this.dataset.week, this.dataset.day);
+                        });
+                    });
+                
+                    function checkDayCompletion(week, day) {
+                        const taskContainer = document.getElementById(`week${week}Day${day}Tasks`);
+                        const dayTasks = taskContainer.querySelectorAll(`[data-week="${week}"][data-day="${day}"]`);
+                        const allChecked = Array.from(dayTasks).every(task => task.checked);
+                
+                        if (allChecked) {
+                            showCompletionAnimation(taskContainer, `✅ Day ${day} Completed! Calories & Protein Intake Met! 💪🔥`);
+                            checkWeekCompletion(week);
+                        }
+                    }
+                
+                    function checkWeekCompletion(week) {
+                        let allDaysCompleted = true;
+                        for (let day = 1; day <= 7; day++) {
+                            const taskContainer = document.getElementById(`week${week}Day${day}Tasks`);
+                            const dayTasks = taskContainer ? taskContainer.querySelectorAll(`[data-week="${week}"][data-day="${day}"]`) : [];
+                            if (!Array.from(dayTasks).every(task => task.checked)) {
+                                allDaysCompleted = false;
+                                break;
+                            }
+                        }
+                
+                        if (allDaysCompleted) {
+                            const lastDayContainer = document.getElementById(`week${week}Day7Tasks`);
+                            showWeekCompletionAnimation(lastDayContainer, "🎉 Week Completed! Great job on meeting your Calories & Protein Intake! 🚀");
+                        }
+                    }
+                
+                    function showCompletionAnimation(target, message) {
+                        if (!target) return;
+                
+                        // Remove existing message to avoid duplicates
+                        let existingMessage = target.querySelector(".completion-animation");
+                        if (existingMessage) existingMessage.remove();
+                
+                        const animationDiv = document.createElement("div");
+                        animationDiv.classList.add("completion-animation");
+                        animationDiv.innerHTML = `<p>${message}</p>`;
+                
+                        // Position on the right of the task list
+                        animationDiv.style.position = "absolute";
+                        animationDiv.style.right = "-30px";
+                        animationDiv.style.top = "50%";
+                        animationDiv.style.transform = "translateY(-50%)";
+                
+                        target.style.position = "relative";
+                        target.appendChild(animationDiv);
+                
+                        // Fade out animation after 3 seconds
+                        setTimeout(() => {
+                            animationDiv.style.opacity = "0";
+                            setTimeout(() => animationDiv.remove(), 500);
+                        }, 3000);
+                    }
+                
+                    function showWeekCompletionAnimation(target, message) {
+                        if (!target) return;
+                
+                        // Remove existing message to avoid duplicates
+                        let existingMessage = document.querySelector(".week-completion-animation");
+                        if (existingMessage) existingMessage.remove();
+                
+                        const animationDiv = document.createElement("div");
+                        animationDiv.classList.add("week-completion-animation");
+                        animationDiv.innerHTML = `<p>${message}</p>`;
+                
+                        // Position it below Day 7
+                        animationDiv.style.position = "relative";
+                        animationDiv.style.marginTop = "10px";
+                        animationDiv.style.padding = "10px";
+                        animationDiv.style.background = "#4caf50";
+                        animationDiv.style.color = "white";
+                        animationDiv.style.fontWeight = "bold";
+                        animationDiv.style.borderRadius = "8px";
+                        animationDiv.style.textAlign = "center";
+                
+                        target.parentElement.appendChild(animationDiv);
+                
+                        // Fade out animation after 5 seconds
+                        setTimeout(() => {
+                            animationDiv.style.opacity = "0";
+                            setTimeout(() => animationDiv.remove(), 500);
+                        }, 5000);
+                    }
+                });
+                
+                
+                
+                document.addEventListener('DOMContentLoaded', function () {
+                    let currentProgress = 0;
+                    const progressFill = document.querySelector('.progress-fill');
+                    const progressPercentage = document.getElementById('progress-percentage');
+                    const rewardIcon = document.querySelector('.reward-icon');
+                    const resetIcon = document.querySelector('.reset-icon');
+            
+                    function getTodayDate() {
+                        return new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+                    }
+            
+                    function updateProgressBar() {
+                        fetch('/get_progress')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (!data.progress) return;
+            
+                                let totalTasks = document.querySelectorAll('.task-checkbox').length;
+                                let completedCount = data.progress.filter(task => task.completed === 1).length;
+                                currentProgress = totalTasks > 0 ? (completedCount / totalTasks) * 100 : 0;
+                                setProgress(currentProgress);
+                            })
+                            .catch(error => console.error("Error fetching progress:", error));
+                    }
+            
+                    function setProgress(progress) {
+                        requestAnimationFrame(() => {
+                            progressFill.style.width = progress + "%";
+                            progressPercentage.innerText = Math.round(progress) + "%";
+                            rewardIcon.style.visibility = progress >= 0 ? "visible" : "hidden";
+                            resetIcon.style.visibility = progress === 100 ? "visible" : "hidden";
+                        });
+                    }
+            
+                    function handleRewardClick() {
+                        document.getElementById(
+                            Math.round(currentProgress) === 100 ? 'coupon-popup' : 'reward-popup'
+                        ).classList.add('show-popup');
+                    }
+            
+                    function openResetPopup() {
+                        document.getElementById('reset-popup').classList.add('show-popup');
+                    }
+            
+                    function closeResetPopup() {
+                        document.getElementById('reset-popup').classList.remove('show-popup');
+                    }
+            
+                    function resetProgress() {
+                        fetch('/reset_progress', { method: 'POST' })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    alert("Progress has been reset!");
+                                    setProgress(0);
+                                    document.querySelectorAll('.task-checkbox').forEach(cb => (cb.checked = false));
+                                    currentProgress = 0;
+                                }
+                                closeResetPopup();
+                            })
+                            .catch(error => console.error("Error resetting progress:", error));
+                    }
+                    function updateCheckboxState() {
+                        fetch('/get_progress')
+                            .then(response => response.json())
+                            .then(data => {
+                                let progress = data.progress;
+                                let unlockedDay = data.unlocked_day || 1; // Global unlocked day
+                    
+                                // Check if the last day of each week is completed
+                                let weekCompletion = {}; // Track last day completion per week
+                                document.querySelectorAll('.day-section').forEach(daySection => {
+                                    let week = parseInt(daySection.getAttribute('data-week'));
+                                    let day = parseInt(daySection.getAttribute('data-day'));
+                    
+                                    // Find all checkboxes for this specific day
+                                    let checkboxes = daySection.querySelectorAll('.task-checkbox');
+                                    let allCompleted = [...checkboxes].length > 0 && [...checkboxes].every(cb => cb.checked);
+                    
+                                    // Store last day's completion status per week
+                                    if (!weekCompletion[week]) weekCompletion[week] = {};
+                                    weekCompletion[week][day] = allCompleted;
+                                });
+                    
+                                // Now, update the unlocking logic
+                                document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+                                    let week = parseInt(checkbox.getAttribute('data-week'));
+                                    let day = parseInt(checkbox.getAttribute('data-day'));
+                                    let task = checkbox.getAttribute('data-task');
+                    
+                                    // Find the task's completion status
+                                    let taskData = progress.find(t => t.week == week && t.day == day && t.task == task);
+                                    if (taskData) checkbox.checked = taskData.completed === 1;
+                    
+                                    // Unlock logic: Week 1 unlocks normally, but Week 2+ unlocks only if previous week completed
+                                    if (week === 1) {
+                                        checkbox.disabled = day > unlockedDay;
+                                    } else {
+                                        let prevWeekLastDayCompleted = weekCompletion[week - 1] && weekCompletion[week - 1][7]; // Check if Week (N-1), Day 7 is done
+                                        checkbox.disabled = !prevWeekLastDayCompleted;
+                                    }
+                                });
+                    
+                                // Update opacity for locked/unlocked days
+                                document.querySelectorAll('.day-section').forEach(daySection => {
+                                    let week = parseInt(daySection.getAttribute('data-week'));
+                                    let day = parseInt(daySection.getAttribute('data-day'));
+                                    let prevWeekLastDayCompleted = weekCompletion[week - 1] && weekCompletion[week - 1][7];
+                    
+                                    daySection.style.opacity = (week === 1 && day <= unlockedDay) || (week > 1 && prevWeekLastDayCompleted) ? "1" : "2";
+                                });
+                            });
+                    }
+                    
+            
+                    function saveTaskProgress(week, day, task, completed) {
+                        fetch('/save_progress', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ week, day, task, completed: completed ? 1 : 0 })
+                        }).then(() => {
+                            updateProgressBar();
+                            updateCheckboxState();
+                        });
+                    }
+            
+                    document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+                        checkbox.addEventListener('change', function () {
+                            let week = parseInt(this.getAttribute('data-week'));
+                            let day = parseInt(this.getAttribute('data-day'));
+                            let task = this.getAttribute('data-task');
+                            let completed = this.checked;
+                            saveTaskProgress(week, day, task, completed);
+                        });
+                    });
+            
+                    function checkMidnightReset() {
+                        let lastCheckedDate = localStorage.getItem('lastCheckedDate') || '';
+                        let todayDate = getTodayDate();
+                        if (lastCheckedDate !== todayDate) {
+                            localStorage.setItem('lastCheckedDate', todayDate);
+                            updateCheckboxState();
+                        }
+                    }
+            
+                    window.toggleWeek = function (week) {
+                        let weekDiv = document.getElementById(`week${week}Days`);
+                        weekDiv.style.display = weekDiv.style.display === 'none' ? 'block' : 'none';
+                    };
+            
+                    window.toggleDay = function (week, day) {
+                        let dayDiv = document.getElementById(`week${week}Day${day}Tasks`);
+                        let prevDayCheckboxes = document.querySelectorAll(
+                            `.day-section[data-week='${week}'][data-day='${day - 1}'] .task-checkbox`
+                        );
+                        let prevDayCompleted = day === 1 || [...prevDayCheckboxes].every(cb => cb.checked);
+                        if (prevDayCompleted) {
+                            dayDiv.style.display = dayDiv.style.display === 'none' ? 'block' : 'none';
+                        }
+                    };
+            
+                    updateProgressBar();
+                    updateCheckboxState();
+                    setInterval(checkMidnightReset, 60000);
+            
+                    window.openResetPopup = openResetPopup;
+                    window.closeResetPopup = closeResetPopup;
+                    window.resetProgress = resetProgress;
+                    window.handleRewardClick = handleRewardClick;
+                    window.closePopup = function (popupId) {
+                        document.getElementById(popupId).classList.remove('show-popup');
+                    };
+                });
+            </script>
+            
+                
+        </div>
+    </div>
+    <footer>
+        <div class="footer-partition">
+            <h1>MY <span class="fitness-text">FITNESS</span> CLUB </h1>
+            <p>Mr Sanket Bharam</p>
+            <p>Our gym offers state-of-the-art equipment and personalized training programs to help you achieve your fitness goals.</p>
+            <div class="contact">
+                    <a href="mailto:myfitnessclub@gmail.com"><span>&#9993; myfitnessclub@gmail.com</span></a><span class="separator">|</span>
+                    <a href="tel:9324111061"><span>&#9742; 9324111061</span></a><span class="separator">|</span>
+                    <a href="https://maps.app.goo.gl/bb9jL72s6iyvPz4v9" target="_blank"><span>&#127968; Dadar, Mumbai - 400025</span></a>
+                </div>
+        </div>
+        
+        <div class="footer-partition">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Signup</a></li>
+            </ul>
+            <div class="social-media">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-partition">
+            <h3>Location</h3>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.9059376718273!2d72.834654!3d19.0152739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cec3021ec8a9%3A0x4fc9eb34c8ca7cc!2sMy%20Fitness%20Club%20Dadar!5e0!3m2!1sen!2sin!4v1601853102843!5m2!1sen!2sin"
+                width="700"
+                height="350"
+                style="border:0;"
+                allowfullscreen=""
+                aria-hidden="false"
+                tabindex="0">
+            </iframe>
+        </div>
+    </footer>
+
+    
+
+    <script>
+       
+        
+    </script>
+</body>
+
+</html>

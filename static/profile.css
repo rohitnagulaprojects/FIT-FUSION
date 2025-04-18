@@ -1,0 +1,239 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.initial-image {
+    flex: 1 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+*{
+    font-family:'Times New Roman', Times, serif;
+}
+.profile-container {
+    max-width: 800px;
+    width: 90%;
+    margin: 130px auto; /* Adjusted margin for centering */
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.609);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative; /* Added for absolute positioning */
+    color: white; /* Adjusted text color for visibility */
+}
+.profile-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.profile-details {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px; /* Adjusted spacing */
+    overflow-x: auto; /* Enable horizontal scroll if needed */
+}
+.profile-details table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.profile-details th, .profile-details td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid white; /* Added border for table cells */
+    color: white; /* Adjusted text color */
+}
+.swipe-down-button {
+    padding: 10px 20px; /* Adjusted button padding */
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-style: unset;
+     /* Adjusted margin for separation */
+    display: block; /* Ensures button is on its own line */
+}
+
+/* Basic Reset */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+/* Main Container */
+.video-background {
+position: relative;
+width: 100%;
+height: 100vh; /* Adjust height as needed */
+overflow: hidden;
+}
+
+#bg-video {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.6); /* Adjust opacity as needed */
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.profile-container2 {
+max-width: 800px;
+margin: 0 auto;
+padding: 20px;
+background-color: rgba(0, 0, 0, 0.609);
+border-radius: 10px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.profile-form {
+display: flex;
+flex-wrap: wrap;
+}
+
+.form-section {
+width: 100%;
+display: flex;
+justify-content: space-between;
+margin-bottom: 20px;
+}
+
+.form-column {
+width: 48%; /* Adjust width as needed */
+}
+
+.form-group {
+margin-bottom: 15px;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 5px;
+font-weight: bold;
+color: white;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+width: 100%;
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 5px;
+background-color: rgba(0, 0, 0, 0.609);
+color: white;
+
+}
+
+.form-group select {
+appearance: none;
+-webkit-appearance: none;
+-moz-appearance: none;
+background: transparent;
+background-image: url("data:image/svg+xml,%3Csvg fill='%23333' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E");
+background-repeat: no-repeat;
+background-position: right 10px top 50%;
+background-size: 12px;
+padding-right: 30px; /* Adjust as needed */
+}
+
+.form-group textarea {
+resize: vertical;
+}
+
+button[type="submit"] {
+padding: 10px 20px;
+background-color: #4CAF50;
+color: #fff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+}
+
+button[type="submit"]:hover {
+background-color: #45a049;
+}
+
+@media screen and (max-width: 768px) {
+.form-column {
+width: 100%; /* Full width on smaller screens */
+}
+}
+
+/* Add these styles to your CSS file */
+
+.prediction-background {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('/static/background-image.jpg') no-repeat center center/cover;
+    display: none; /* Initially hidden */
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.prediction-box {
+    width: 45%;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.diet-prediction {
+    margin-right: 20px;
+}
+
+.workout-prediction {
+    margin-left: 20px;
+}
+.profile-group {
+    display: flex; /* Enables flexbox layout */
+    justify-content: center; /* Centers content horizontally */
+    margin-top: 20px; /* Space above the group */
+}
+
+.profile-group input[type="submit"] {
+    padding: 10px 20px; /* Button padding */
+    background-color: white; /* Button background color */
+    color: black; /* Button text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition effects */
+}
+
+.profile-group input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.profile-group input[type="submit"]:active {
+    transform: translateY(0); /* Reset the lift effect on click */
+}
+
+.profile-group input[type="submit"]:disabled {
+    background-color: #cccccc; /* Grey color for disabled state */
+    cursor: not-allowed; /* Not allowed cursor */
+}
+
+
